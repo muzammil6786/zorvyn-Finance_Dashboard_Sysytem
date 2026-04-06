@@ -35,6 +35,9 @@ app.get("/health", (_, res) => res.json({ status: "ok", timestamp: new Date().to
 
 // ── API routes ────────────────────────────────────────────────────────────────
 app.use("/api/v1", routes);
+app.use("/", (req,res)=>{
+  res.send({msg : "server is live and running "})
+});
 
 // ── Error handling ────────────────────────────────────────────────────────────
 app.use(notFound);
