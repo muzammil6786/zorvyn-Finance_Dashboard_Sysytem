@@ -254,11 +254,3 @@ The Express `app` is exported from `app.js` without `.listen()`. `server.js` con
 Joi schemas are defined once per domain and wrapped by a `validate(schema)` factory into Express middleware. Query param validation is handled separately from body validation.
 
 ---
-
-## Assumptions
-
-- A "viewer" can read transaction records but has no access to analytics — dashboards are analyst+ only. This models a typical pattern where raw data read-access and insight access are separate concerns.
-- Only admins can create transactions (i.e. only trusted staff enter financial records).
-- Soft delete applies to transactions only; users are hard-deleted since they have no financial ledger implications in this scope.
-- Passwords are hashed with bcrypt (12 rounds). The plain text password field is excluded from all query results via `select: false`.
-- Rate limiting is set to 100 requests per 15 minutes per IP — suitable for a dashboard scenario.
